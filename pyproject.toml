@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ranuk-voice-closer"
+version = "0.1.0"
+description = "Enterprise Full-Duplex B2B AI Voice Receptionist & Inbound Sales Closer powered by NVIDIA PersonaPlex 7B (nvidia/personaplex-7b-v1 / moshi)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+authors = [
+  { name = "Emilio Ranucoli (Ranuk IT Solutions)", email = "ranucoliemilio@gmail.com" }
+]
+keywords = [
+  "personaplex",
+  "nvidia",
+  "moshi",
+  "full-duplex",
+  "voice-ai",
+  "b2b-sales",
+  "wcag",
+  "ada-compliance",
+  "speech-to-speech"
+]
+dependencies = [
+  "aiohttp>=3.9.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=7.4.0",
+]
+
+[project.scripts]
+ranuk-voice-closer = "ranuk_voice_closer.server:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["ranuk_voice_closer*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

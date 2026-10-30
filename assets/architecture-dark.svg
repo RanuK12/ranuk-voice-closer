@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 540" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgArch" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#070913" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+    <marker id="arrowCyan" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#64ffda" />
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#76b900" />
+    </marker>
+  </defs>
+
+  <rect width="1200" height="540" rx="18" fill="url(#bgArch)" stroke="#1e293b" stroke-width="2" />
+
+  <!-- Header -->
+  <text x="50" y="48" font-family="'Fira Code', monospace" font-size="14" font-weight="600" fill="#76b900" letter-spacing="1.5">SYSTEM ARCHITECTURE · NVIDIA PERSONAPLEX 7B (`nvidia/personaplex-7b-v1`) FULL-DUPLEX PIPELINE</text>
+  <text x="50" y="78" font-family="'Inter', sans-serif" font-size="24" font-weight="800" fill="#f8fafc">WebSocket Opus/PCM Stream → Moshi Full-Duplex S2S (18 Voices) → Live Checkout</text>
+
+  <!-- Stage 1: Client & Transport -->
+  <g transform="translate(45, 125)">
+    <rect x="0" y="0" width="240" height="360" rx="14" fill="#0b1325" stroke="#38bdf8" stroke-width="1.8" />
+    <rect x="18" y="18" width="204" height="32" rx="8" fill="#1e293b" />
+    <text x="32" y="39" font-family="'Fira Code', monospace" font-size="12.5" font-weight="700" fill="#38bdf8">1. EMBEDDABLE WIDGET</text>
+
+    <rect x="20" y="72" width="200" height="74" rx="10" fill="#111827" stroke="#1e293b" />
+    <text x="34" y="98" font-family="'Inter', sans-serif" font-size="14" font-weight="700" fill="#f8fafc">Moshi WebSocket Stream</text>
+    <text x="34" y="118" font-family="'Inter', sans-serif" font-size="12" fill="#94a3b8">24kHz PCM / Opus Frames</text>
+    <text x="34" y="135" font-family="'Fira Code', monospace" font-size="11" fill="#64ffda">Simultaneous Rx/Tx</text>
+
+    <rect x="20" y="164" width="200" height="78" rx="10" fill="#111827" stroke="#1e293b" />
+    <text x="34" y="190" font-family="'Inter', sans-serif" font-size="14" font-weight="700" fill="#f8fafc">Language Conditioning</text>
+    <text x="34" y="210" font-family="'Inter', sans-serif" font-size="12" fill="#94a3b8">Instant Toggle: ES ⇄ EN</text>
+    <text x="34" y="228" font-family="'Fira Code', monospace" font-size="11" fill="#76b900">--text-prompt &lt;system&gt;</text>
+
+    <rect x="20" y="260" width="200" height="78" rx="10" fill="#111827" stroke="#1e293b" />
+    <text x="34" y="286" font-family="'Inter', sans-serif" font-size="14" font-weight="700" fill="#f8fafc">Context Telemetry</text>
+    <text x="34" y="306" font-family="'Inter', sans-serif" font-size="12" fill="#94a3b8">Domain, WCAG Violations,</text>
+    <text x="34" y="324" font-family="'Inter', sans-serif" font-size="12" fill="#94a3b8">Pricing &amp; Prospect Metadata</text>
+  </g>
+
+  <!-- Arrows Stage 1 -> Stage 2 -->
+  <path d="M 285 215 L 355 195" fill="none" stroke="#64ffda" stroke-width="2.5" marker-end="url(#arrowCyan)" />
+  <path d="M 285 335 L 355 365" fill="none" stroke="#76b900" stroke-width="2.5" marker-end="url(#arrowGreen)" />
+
+  <!-- Stage 2: NVIDIA PersonaPlex 7B Core -->
+  <g transform="translate(365, 125)">
+    <rect x="0" y="0" width="465" height="360" rx="14" fill="#0b1325" stroke="#76b900" stroke-width="1.8" />
+    <rect x="20" y="18" width="425" height="32" rx="8" fill="#1e293b" />
+    <text x="30" y="39" font-family="'Fira Code', monospace" font-size="12" font-weight="700" fill="#76b900">2. NVIDIA PERSONAPLEX 7B (`nvidia/personaplex-7b-v1`)</text>
+
+    <!-- Mode A: Live WebSocket Full-Duplex Server -->
+    <rect x="22" y="68" width="420" height="128" rx="12" fill="#111827" stroke="#76b900" stroke-width="1.4" />
+    <text x="40" y="95" font-family="'Fira Code', monospace" font-size="14.5" font-weight="700" fill="#76b900">LIVE STREAMING · `python -m moshi.server` + `--cpu-offload`</text>
+    <text x="40" y="118" font-family="'Inter', sans-serif" font-size="13" fill="#e2e8f0">Moshi Mimi Neural Audio Codec (24kHz) + Helium 7B Temporal Transformer</text>
+    <text x="40" y="140" font-family="'Fira Code', monospace" font-size="12" fill="#94a3b8">Natural Voices: NATF0..3 (Female) · NATM0..3 (Male)</text>
+    <text x="40" y="162" font-family="'Fira Code', monospace" font-size="12" fill="#38bdf8">Variety Voices: VARF0..4 (Female) · VARM0..4 (Male)</text>
+    <text x="40" y="182" font-family="'Fira Code', monospace" font-size="11" fill="#22c55e">✓ True Full-Duplex Speech-to-Speech · Natural Barge-In &amp; Backchannels</text>
+
+    <!-- Mode B: Offline / Batch & Spanish/English Prompt Conditioning -->
+    <rect x="22" y="212" width="420" height="130" rx="12" fill="#111827" stroke="#64ffda" stroke-width="1.4" />
+    <text x="40" y="239" font-family="'Fira Code', monospace" font-size="14.5" font-weight="700" fill="#64ffda">PROMPT &amp; VOICE CONDITIONING · `python -m moshi.offline`</text>
+    <text x="40" y="262" font-family="'Inter', sans-serif" font-size="13" fill="#e2e8f0">Dynamic `--voice-prompt &lt;NATF2.pt&gt;` + `--text-prompt "&lt;system&gt; ... &lt;system&gt;"`</text>
+    <text x="40" y="284" font-family="'Fira Code', monospace" font-size="12" fill="#94a3b8">English &amp; Español Role Instructions Injected directly into `<system>` tag</text>
+    <text x="40" y="306" font-family="'Inter', sans-serif" font-size="12" fill="#64ffda">Context Injection: WCAG 2.1 AA Violations, B2B Quotes, Cal.com Links</text>
+    <text x="40" y="326" font-family="'Fira Code', monospace" font-size="11" fill="#22c55e">✓ Zero External TTS APIs · 100% Native NVIDIA PersonaPlex Weights</text>
+  </g>
+
+  <!-- Arrows Stage 2 -> Stage 3 -->
+  <path d="M 830 230 L 900 230" fill="none" stroke="#64ffda" stroke-width="2.5" marker-end="url(#arrowCyan)" />
+  <path d="M 830 330 L 900 330" fill="none" stroke="#76b900" stroke-width="2.5" marker-end="url(#arrowGreen)" />
+
+  <!-- Stage 3: Conversion & Revenue Handoff -->
+  <g transform="translate(910, 125)">
+    <rect x="0" y="0" width="245" height="360" rx="14" fill="#0b1325" stroke="#a855f7" stroke-width="1.8" />
+    <rect x="18" y="18" width="209" height="32" rx="8" fill="#1e293b" />
+    <text x="30" y="39" font-family="'Fira Code', monospace" font-size="12.5" font-weight="700" fill="#c084fc">3. REVENUE &amp; CRM HANDOFF</text>
+
+    <rect x="20" y="72" width="205" height="82" rx="10" fill="#111827" stroke="#1e293b" />
+    <text x="34" y="98" font-family="'Inter', sans-serif" font-size="14" font-weight="700" fill="#64ffda">ADA / WCAG Audit Close</text>
+    <text x="34" y="118" font-family="'Inter', sans-serif" font-size="12" fill="#e2e8f0">$290 Remediation Checkout</text>
+    <text x="34" y="138" font-family="'Fira Code', monospace" font-size="11" fill="#94a3b8">audit.ranuk.dev/checkout</text>
+
+    <rect x="20" y="170" width="205" height="82" rx="10" fill="#111827" stroke="#1e293b" />
+    <text x="34" y="196" font-family="'Inter', sans-serif" font-size="14" font-weight="700" fill="#38bdf8">Enterprise SDR Booking</text>
+    <text x="34" y="216" font-family="'Inter', sans-serif" font-size="12" fill="#e2e8f0">Live Discovery Call Link</text>
+    <text x="34" y="236" font-family="'Fira Code', monospace" font-size="11" fill="#94a3b8">ranuk.dev/#contact</text>
+
+    <rect x="20" y="268" width="205" height="72" rx="10" fill="#111827" stroke="#1e293b" />
+    <text x="34" y="294" font-family="'Inter', sans-serif" font-size="14" font-weight="700" fill="#76b900">Webhook &amp; WAV Output</text>
+    <text x="34" y="314" font-family="'Inter', sans-serif" font-size="12" fill="#e2e8f0">24kHz WAV + JSON Transcript</text>
+    <text x="34" y="330" font-family="'Fira Code', monospace" font-size="11" fill="#22c55e">+ Intent Score (0-100)</text>
+  </g>
+</svg>
