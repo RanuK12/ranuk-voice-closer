@@ -179,7 +179,7 @@ def main() -> None:
     import argparse
 
     parser = argparse.ArgumentParser(description="Ranuk Voice Closer — NVIDIA PersonaPlex 7B Server")
-    parser.add_argument("--host", default="0.0.0.0", help="Bind host")
+    parser.add_argument("--host", default="127.0.0.1", help="Bind host")
     parser.add_argument("--port", type=int, default=8999, help="Bind port")
     args = parser.parse_args()
 
